@@ -124,6 +124,12 @@ extension LoginViewController {
         }
         if username == "Bekzod" && password == "123" {
             signInButton.configuration?.showsActivityIndicator = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+                let vc = OnboardingContainerViewController()
+                vc.modalTransitionStyle = .flipHorizontal
+                vc.modalPresentationStyle = .automatic
+                self.present(vc, animated: true)
+            }
         } else {
             signInButton.configuration?.showsActivityIndicator = false
             configureView(with: "Incorrect username / password")
