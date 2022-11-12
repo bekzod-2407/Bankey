@@ -7,6 +7,8 @@
 
 import UIKit
 
+let appColor: UIColor = .systemTeal
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -14,13 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let loginViewController = LoginViewController()
     let onboardingViewController = OnboardingContainerViewController()
     let dummyViewController = DummyViewController()
+    let  mainViewController = MainViewController()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
    
-        window?.rootViewController = loginViewController
+        window?.rootViewController = mainViewController
         onboardingViewController.delegate = self
         loginViewController.delegate = self
         dummyViewController.delegate = self
@@ -34,10 +38,11 @@ extension AppDelegate: LoginViewControllerDelegate, OnboardingContainerViewContr
     }
     
     func didLogin() {
-        setRootViewController(vc:onboardingViewController)
+        setRootViewController(vc: LocalState.hasOnbordered ? dummyViewController : onboardingViewController)
     }
-    func didOnboarding() {
+    func didFinishOnboarding() {
        setRootViewController(vc: dummyViewController)
+        LocalState.hasOnbordered = true
     }
     
     

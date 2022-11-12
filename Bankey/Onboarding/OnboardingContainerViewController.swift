@@ -7,7 +7,7 @@
 import UIKit
 
 protocol OnboardingContainerViewControllerDelegate: AnyObject {
-    func didOnboarding() 
+    func didFinishOnboarding() 
 }
 
 class OnboardingContainerViewController: UIViewController {
@@ -121,6 +121,6 @@ extension OnboardingContainerViewController: UIPageViewControllerDataSource {
 
 extension OnboardingContainerViewController {
     @objc func closeButtonTapped() {
-        delegate?.didOnboarding() 
+        delegate?.didFinishOnboarding() 
     }
 }
