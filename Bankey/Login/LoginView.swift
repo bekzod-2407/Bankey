@@ -23,11 +23,11 @@ class LoginView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-//    override var intrinsicContentSize: CGSize {
-//  размер по умолчанию, который хочет получить контролируемый объект
-//        return CGSize(width: 200, height: 200)
-//    }
-
+    //    override var intrinsicContentSize: CGSize {
+    //  размер по умолчанию, который хочет получить контролируемый объект
+    //        return CGSize(width: 200, height: 200)
+    //    }
+    
 }
 
 extension LoginView {
@@ -56,7 +56,7 @@ extension LoginView {
         passworTextField.delegate = self
         passworTextField.placeholder = " Password"
         passworTextField.isSecureTextEntry = true
-
+        
     }
     func layout() {
         NSLayoutConstraint.activate([
@@ -74,10 +74,14 @@ extension LoginView {
 extension LoginView: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        userNameTextField.endEditing(true)
-        passworTextField.endEditing(true)
+        switch textField {
+        case userNameTextField:
+            userNameTextField.endEditing(true)
+            passworTextField.becomeFirstResponder()
+        default:
+            textField.endEditing(true)
+        }
         return true
-
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {

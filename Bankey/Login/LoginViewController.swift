@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol LoginViewControllerDelegate: AnyObject {
+    func didLogin()
+}
+
 class LoginViewController: UIViewController {
 
     var mainLabel = UILabel()
@@ -15,6 +19,8 @@ class LoginViewController: UIViewController {
     var loginView = LoginView()
     var signInButton = UIButton(type: .system)
     var errorMessageLabel = UILabel()
+    
+    weak var delegate: LoginViewControllerDelegate?
     
     var username: String? {
         return loginView.userNameTextField.text
@@ -28,6 +34,17 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         style()
         layout()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        signInButton.configuration?.showsActivityIndicator = false
+        loginView.userNameTextField.text = ""
+        loginView.passworTextField.text = ""
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loginView.userNameTextField.becomeFirstResponder()
     }
 
    
@@ -71,7 +88,7 @@ extension LoginViewController {
         view.addSubview(errorMessageLabel)
         
         NSLayoutConstraint.activate([
-            loginView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loginView.topAnchor.constraint(equalToSystemSpacingBelow: subLabel.bottomAnchor, multiplier: 10),
             loginView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 1),
             //login lead.acvhor  16point after view.leading anchor
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: loginView.trailingAnchor, multiplier: 1),
@@ -122,14 +139,9 @@ extension LoginViewController {
             signInButton.configuration?.imagePadding = 8
             return
         }
-        if username == "Bekzod" && password == "123" {
+        if username == "1" && password == "1" {
             signInButton.configuration?.showsActivityIndicator = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
-                let vc = OnboardingContainerViewController()
-                vc.modalTransitionStyle = .flipHorizontal
-                vc.modalPresentationStyle = .automatic
-                self.present(vc, animated: true)
-            }
+            delegate?.didLogin()
         } else {
             signInButton.configuration?.showsActivityIndicator = false
             configureView(with: "Incorrect username / password")

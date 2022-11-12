@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE1E52BC291FD3FE00E10863 /* DummyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E52BB291FD3FE00E10863 /* DummyViewController.swift */; };
 		CE7F683428F07FD3002BB663 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F683328F07FD3002BB663 /* AppDelegate.swift */; };
 		CE7F683828F07FD3002BB663 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F683728F07FD3002BB663 /* LoginViewController.swift */; };
 		CE7F683D28F07FD5002BB663 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE7F683C28F07FD5002BB663 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE1E52BB291FD3FE00E10863 /* DummyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyViewController.swift; sourceTree = "<group>"; };
 		CE7F683028F07FD3002BB663 /* Bankey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bankey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7F683328F07FD3002BB663 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE7F683728F07FD3002BB663 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			children = (
 				CE7F683728F07FD3002BB663 /* LoginViewController.swift */,
 				CE7F684928F084B4002BB663 /* LoginView.swift */,
+				CE1E52BB291FD3FE00E10863 /* DummyViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE7F684A28F084B4002BB663 /* LoginView.swift in Sources */,
+				CE1E52BC291FD3FE00E10863 /* DummyViewController.swift in Sources */,
 				CE7F683828F07FD3002BB663 /* LoginViewController.swift in Sources */,
 				CE7F685128F1B3D8002BB663 /* OnboardingViewController.swift in Sources */,
 				CE7F683428F07FD3002BB663 /* AppDelegate.swift in Sources */,
