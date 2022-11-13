@@ -17,6 +17,7 @@ class AccountSummaryViewController: UIViewController {
         setupSubView()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(AccountSummaryTableViewCell.self, forCellReuseIdentifier: "Cell")
         setupTableViewHeaderView()
     }
     
@@ -37,20 +38,23 @@ class AccountSummaryViewController: UIViewController {
         headerView.frame.size.height = 140
         tableView.tableHeaderView = headerView
     }
-    
 }
 
 extension AccountSummaryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = names[indexPath.row]
+        let cell =  tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! AccountSummaryTableViewCell
+
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return names.count
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(100)
     }
 }
 
