@@ -51,7 +51,7 @@ extension AppDelegate {
     
     func setRootViewController(vc: UIViewController, animated: Bool = true) {
         guard let window = self.window ,animated else {
-            self.window?.rootViewController = vc
+            self.window?.rootViewController = AccountSummaryViewController()
             self.window?.makeKeyAndVisible()
             return
         }
