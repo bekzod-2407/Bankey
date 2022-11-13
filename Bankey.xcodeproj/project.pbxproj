@@ -11,6 +11,8 @@
 		CE1E52BF291FDABF00E10863 /* LocalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E52BE291FDABF00E10863 /* LocalState.swift */; };
 		CE1E52C1291FF15B00E10863 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E52C0291FF15B00E10863 /* extensions.swift */; };
 		CE1E52C3291FF3DD00E10863 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E52C2291FF3DC00E10863 /* MainViewController.swift */; };
+		CE1E52C52920EF2000E10863 /* AccountSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E52C42920EF2000E10863 /* AccountSummaryViewController.swift */; };
+		CE1E52C92920EFE100E10863 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CE1E52C82920EFE100E10863 /* SnapKit */; };
 		CE7F683428F07FD3002BB663 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F683328F07FD3002BB663 /* AppDelegate.swift */; };
 		CE7F683828F07FD3002BB663 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F683728F07FD3002BB663 /* LoginViewController.swift */; };
 		CE7F683D28F07FD5002BB663 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE7F683C28F07FD5002BB663 /* Assets.xcassets */; };
@@ -25,6 +27,7 @@
 		CE1E52BE291FDABF00E10863 /* LocalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalState.swift; sourceTree = "<group>"; };
 		CE1E52C0291FF15B00E10863 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		CE1E52C2291FF3DC00E10863 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		CE1E52C42920EF2000E10863 /* AccountSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSummaryViewController.swift; sourceTree = "<group>"; };
 		CE7F683028F07FD3002BB663 /* Bankey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bankey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7F683328F07FD3002BB663 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE7F683728F07FD3002BB663 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1E52C92920EFE100E10863 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +58,14 @@
 				CE1E52C0291FF15B00E10863 /* extensions.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		CE1E52C62920EF2900E10863 /* AccountSummary */ = {
+			isa = PBXGroup;
+			children = (
+				CE1E52C42920EF2000E10863 /* AccountSummaryViewController.swift */,
+			);
+			path = AccountSummary;
 			sourceTree = "<group>";
 		};
 		CE7F682728F07FD3002BB663 = {
@@ -75,12 +87,13 @@
 		CE7F683228F07FD3002BB663 /* Bankey */ = {
 			isa = PBXGroup;
 			children = (
-				CE1E52BD291FDAA900E10863 /* Utils */,
-				CE7F684D28F19DBF002BB663 /* Onboarding */,
-				CE7F684828F0848F002BB663 /* Login */,
-				CE7F684728F08479002BB663 /* Files */,
 				CE7F683328F07FD3002BB663 /* AppDelegate.swift */,
 				CE1E52C2291FF3DC00E10863 /* MainViewController.swift */,
+				CE1E52C62920EF2900E10863 /* AccountSummary */,
+				CE7F684828F0848F002BB663 /* Login */,
+				CE7F684D28F19DBF002BB663 /* Onboarding */,
+				CE1E52BD291FDAA900E10863 /* Utils */,
+				CE7F684728F08479002BB663 /* Files */,
 			);
 			path = Bankey;
 			sourceTree = "<group>";
@@ -130,6 +143,9 @@
 			dependencies = (
 			);
 			name = Bankey;
+			packageProductDependencies = (
+				CE1E52C82920EFE100E10863 /* SnapKit */,
+			);
 			productName = Bankey;
 			productReference = CE7F683028F07FD3002BB663 /* Bankey.app */;
 			productType = "com.apple.product-type.application";
@@ -158,6 +174,9 @@
 				Base,
 			);
 			mainGroup = CE7F682728F07FD3002BB663;
+			packageReferences = (
+				CE1E52C72920EFE100E10863 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = CE7F683128F07FD3002BB663 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -191,6 +210,7 @@
 				CE7F683828F07FD3002BB663 /* LoginViewController.swift in Sources */,
 				CE7F685128F1B3D8002BB663 /* OnboardingViewController.swift in Sources */,
 				CE7F683428F07FD3002BB663 /* AppDelegate.swift in Sources */,
+				CE1E52C52920EF2000E10863 /* AccountSummaryViewController.swift in Sources */,
 				CE1E52C3291FF3DD00E10863 /* MainViewController.swift in Sources */,
 				CE7F684F28F19DF0002BB663 /* OnboardingContainerViewController.swift in Sources */,
 			);
@@ -400,6 +420,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CE1E52C72920EFE100E10863 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CE1E52C82920EFE100E10863 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE1E52C72920EFE100E10863 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CE7F682828F07FD3002BB663 /* Project object */;
 }
