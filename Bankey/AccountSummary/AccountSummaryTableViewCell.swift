@@ -79,6 +79,20 @@ class AccountSummaryTableViewCell: UITableViewCell {
             v.leading.equalTo(balancelabelStack.snp.trailing).offset(8)
         }
     }
-    
-    
+}
+
+extension AccountSummaryTableViewCell {
+    func configure(with data: AccountSummaryModel) {
+        nameLabel.text = data.accauntName
+        appLabel.text = data.accauntType.rawValue
+        
+        switch data.accauntType {
+        case .Banking:
+            dividerView.backgroundColor =  appColor
+        case .CreditCards:
+            dividerView.backgroundColor = .orange
+        case .Investment:
+            dividerView.backgroundColor = .systemPurple
+        }
+    }
 }

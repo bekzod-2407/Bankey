@@ -8,10 +8,23 @@
 import UIKit
 import SnapKit
 
+enum AccountType: String {
+    case Banking
+    case CreditCards
+    case Investment
+}
+
+struct AccountSummaryModel {
+    var accauntType: AccountType
+    var accauntName: String
+}
+
+
 class AccountSummaryViewController: UIViewController {
     
     var tableView = UITableView()
-    var names = ["a", "V" , "C"]
+    var accauntData: [AccountSummaryModel] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubView()
@@ -19,7 +32,10 @@ class AccountSummaryViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(AccountSummaryTableViewCell.self, forCellReuseIdentifier: "Cell")
         setupTableViewHeaderView()
+        fetchData()
     }
+  
+    var accauntSummaryModel: AccountSummaryModel? = nil
     
     private func setupSubView() {
         view.addSubview(tableView)
@@ -41,13 +57,25 @@ class AccountSummaryViewController: UIViewController {
 }
 
 extension AccountSummaryViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    private func fetchData() {
+        let saving = AccountSummaryModel(accauntType: .Banking, accauntName: "Savings")
+        let visa = AccountSummaryModel(accauntType: .CreditCards, accauntName: "Avion Visa Card")
+        let investment = AccountSummaryModel(accauntType: .Investment, accauntName: "Tax-Free Saver")
+        
+        accauntData.append(saving)
+        accauntData.append(visa)
+        accauntData.append(investment)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! AccountSummaryTableViewCell
-
+        let accaunt = accauntData[indexPath.row]
+        cell.configure(with: accaunt)
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return names.count
+        return accauntData.count
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
