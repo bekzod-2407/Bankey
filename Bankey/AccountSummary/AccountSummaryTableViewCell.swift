@@ -52,6 +52,7 @@ class AccountSummaryTableViewCell: UITableViewCell {
         
         nameLabel.font = .preferredFont(forTextStyle: .body)
         nameLabel.text = "No-Feel all-In Chequing"
+        nameLabel.adjustsFontSizeToFitWidth = true
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(dividerView.snp.bottom).offset(16)
             make.leading.equalToSuperview().inset(16)
@@ -59,6 +60,7 @@ class AccountSummaryTableViewCell: UITableViewCell {
         
         balanceLabel.text = "Current Balance"
         balanceLabel.font = .preferredFont(forTextStyle: .callout)
+        balanceLabel.adjustsFontSizeToFitWidth = true
         balancelabelStack.spacing = 0
         balancelabelStack.axis = .vertical
         balanceAmmountLabel.text = "$ 17,675.35"

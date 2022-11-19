@@ -56,7 +56,7 @@ extension LoginView {
         passworTextField.delegate = self
         passworTextField.placeholder = " Password"
         passworTextField.isSecureTextEntry = true
-        
+        passworTextField.enablePasswordToggle()
     }
     func layout() {
         NSLayoutConstraint.activate([

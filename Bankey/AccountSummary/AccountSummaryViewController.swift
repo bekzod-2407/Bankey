@@ -30,6 +30,12 @@ class AccountSummaryViewController: UIViewController {
     var tableView = UITableView()
     var accauntData: [AccountSummaryModel] = []
     
+   lazy var LogOutBarButton: UIBarButtonItem = {
+        var view = UIBarButtonItem(title: "LogOut", style: .plain, target: self, action: #selector(logOutButtonTapped))
+        view.tintColor = .label
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = appColor
@@ -52,6 +58,7 @@ class AccountSummaryViewController: UIViewController {
             v.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
             v.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
+        navigationItem.rightBarButtonItem = LogOutBarButton
     }
     
     private func setupTableViewHeaderView() {
@@ -59,6 +66,10 @@ class AccountSummaryViewController: UIViewController {
         headerView.backgroundColor = appColor
         headerView.frame.size.height = 140
         tableView.tableHeaderView = headerView
+    }
+   
+    @objc func logOutButtonTapped(sender: UIButton) {
+        NotificationCenter.default.post(name: .logout, object: nil)
     }
 }
 
