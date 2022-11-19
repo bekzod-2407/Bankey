@@ -24,19 +24,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
         mainViewController.setStatusBar()
-        window?.rootViewController = mainViewController
         loginViewController.delegate = self
         onboardingViewController.delegate = self
             
-        
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().backgroundColor = appColor
+        window?.rootViewController = mainViewController
 
         return true
     }
 }
 
-extension AppDelegate: LoginViewControllerDelegate, OnboardingContainerViewControllerDelegate {
+extension AppDelegate: LoginViewControllerDelegate, OnboardingContainerViewControllerDelegate, LogOutDelegate{
+    
     func didLogin() {
         if LocalState.hasOnbordered {
             setRootViewController(vc: mainViewController)
@@ -48,12 +48,15 @@ extension AppDelegate: LoginViewControllerDelegate, OnboardingContainerViewContr
     func didFinishOnboarding() {
         setRootViewController(vc: mainViewController)
     }
+    func didLogOut() {
+        setRootViewController(vc: loginViewController)
+    }
 }
 extension AppDelegate {
     
     func setRootViewController(vc: UIViewController, animated: Bool = true) {
         guard let window = self.window ,animated else {
-            self.window?.rootViewController = AccountSummaryViewController()
+            self.window?.rootViewController = vc
             self.window?.makeKeyAndVisible()
             return
         }
