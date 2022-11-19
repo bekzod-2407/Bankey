@@ -23,29 +23,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
-   
-        window?.rootViewController = mainViewController
-        onboardingViewController.delegate = self
+        mainViewController.setStatusBar()
         loginViewController.delegate = self
-        dummyViewController.delegate = self
+        onboardingViewController.delegate = self
+            
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().backgroundColor = appColor
+        window?.rootViewController = mainViewController
+
         return true
     }
 }
 
-extension AppDelegate: LoginViewControllerDelegate, OnboardingContainerViewControllerDelegate , LogOutDelegate {
+extension AppDelegate: LoginViewControllerDelegate, OnboardingContainerViewControllerDelegate, LogOutDelegate{
+    
+    func didLogin() {
+        if LocalState.hasOnbordered {
+            setRootViewController(vc: mainViewController)
+        } else {
+            setRootViewController(vc: onboardingViewController)
+        }
+    }
+    
+    func didFinishOnboarding() {
+        setRootViewController(vc: mainViewController)
+    }
     func didLogOut() {
         setRootViewController(vc: loginViewController)
     }
-    
-    func didLogin() {
-        setRootViewController(vc: LocalState.hasOnbordered ? dummyViewController : onboardingViewController)
-    }
-    func didFinishOnboarding() {
-       setRootViewController(vc: dummyViewController)
-        LocalState.hasOnbordered = true
-    }
-    
-    
 }
 extension AppDelegate {
     
