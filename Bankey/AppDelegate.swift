@@ -23,29 +23,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
-   
+        mainViewController.setStatusBar()
         window?.rootViewController = mainViewController
-        onboardingViewController.delegate = self
         loginViewController.delegate = self
-        dummyViewController.delegate = self
+        onboardingViewController.delegate = self
+            
+        
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().backgroundColor = appColor
+
         return true
     }
 }
 
-extension AppDelegate: LoginViewControllerDelegate, OnboardingContainerViewControllerDelegate , LogOutDelegate {
-    func didLogOut() {
-        setRootViewController(vc: loginViewController)
-    }
-    
+extension AppDelegate: LoginViewControllerDelegate, OnboardingContainerViewControllerDelegate {
     func didLogin() {
-        setRootViewController(vc: LocalState.hasOnbordered ? dummyViewController : onboardingViewController)
+        if LocalState.hasOnbordered {
+            setRootViewController(vc: mainViewController)
+        } else {
+            setRootViewController(vc: onboardingViewController)
+        }
     }
+    
     func didFinishOnboarding() {
-       setRootViewController(vc: dummyViewController)
-        LocalState.hasOnbordered = true
+        setRootViewController(vc: mainViewController)
     }
-    
-    
 }
 extension AppDelegate {
     

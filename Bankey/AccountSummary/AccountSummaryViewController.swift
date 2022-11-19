@@ -10,13 +10,18 @@ import SnapKit
 
 enum AccountType: String {
     case Banking
-    case CreditCards
+    case CreditCard
     case Investment
 }
 
 struct AccountSummaryModel {
     var accauntType: AccountType
     var accauntName: String
+    let balance: Decimal
+    
+    var balanceAsAttributedString: NSAttributedString {
+            return CurrencyFormatter().makeAttributedCurrency(balance)
+        }
 }
 
 
@@ -27,6 +32,7 @@ class AccountSummaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = appColor
         setupSubView()
         tableView.delegate = self
         tableView.dataSource = self
@@ -39,7 +45,7 @@ class AccountSummaryViewController: UIViewController {
     
     private func setupSubView() {
         view.addSubview(tableView)
-        
+        tableView.backgroundColor = appColor
         tableView.snp.makeConstraints { v in
             v.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(20)
             v.leading.equalTo(view.safeAreaLayoutGuide.snp.leading)
@@ -59,13 +65,19 @@ class AccountSummaryViewController: UIViewController {
 extension AccountSummaryViewController: UITableViewDelegate, UITableViewDataSource {
     
     private func fetchData() {
-        let saving = AccountSummaryModel(accauntType: .Banking, accauntName: "Savings")
-        let visa = AccountSummaryModel(accauntType: .CreditCards, accauntName: "Avion Visa Card")
-        let investment = AccountSummaryModel(accauntType: .Investment, accauntName: "Tax-Free Saver")
-        
-        accauntData.append(saving)
+        let savings = AccountSummaryModel(accauntType: .Banking,accauntName: "Basic Savings",balance: 929466.23)
+        let chequing = AccountSummaryModel(accauntType: .Banking,accauntName: "No-Fee All-In Chequing",balance: 17562.44)
+        let visa = AccountSummaryModel(accauntType: .CreditCard,accauntName: "Visa Avion Card",balance: 412.83)
+        let masterCard = AccountSummaryModel(accauntType: .CreditCard,accauntName: "Student Mastercard",balance: 50.83)
+        let investment1 = AccountSummaryModel(accauntType: .Investment, accauntName: "Tax-Free Saver", balance: 2000.00)
+        let investment2 = AccountSummaryModel(accauntType: .Investment, accauntName: "Growth Fund", balance: 15000.00)
+       
+        accauntData.append(savings)
+        accauntData.append(chequing)
         accauntData.append(visa)
-        accauntData.append(investment)
+        accauntData.append(masterCard)
+        accauntData.append(investment1)
+        accauntData.append(investment2)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

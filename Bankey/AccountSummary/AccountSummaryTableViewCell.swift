@@ -85,14 +85,37 @@ extension AccountSummaryTableViewCell {
     func configure(with data: AccountSummaryModel) {
         nameLabel.text = data.accauntName
         appLabel.text = data.accauntType.rawValue
+        balanceAmmountLabel.text = "$ \(data.balance)"
+        balanceAmmountLabel.attributedText = makeFormattedBalance(dollars: "929,466", cents: "23")
+        
         
         switch data.accauntType {
         case .Banking:
             dividerView.backgroundColor =  appColor
-        case .CreditCards:
+        case .CreditCard:
             dividerView.backgroundColor = .orange
         case .Investment:
+            balanceLabel.text = "value"
             dividerView.backgroundColor = .systemPurple
         }
     }
 }
+
+extension AccountSummaryTableViewCell {
+    private func makeFormattedBalance(dollars: String, cents: String) -> NSMutableAttributedString {
+        let dollarSignAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .callout), .baselineOffset: 8]
+        let dollarAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .title1)]
+        let centAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .footnote), .baselineOffset: 8]
+        
+        let rootString = NSMutableAttributedString(string: "$", attributes: dollarSignAttributes)
+        let dollarString = NSAttributedString(string: dollars, attributes: dollarAttributes)
+        let centString = NSAttributedString(string: cents, attributes: centAttributes)
+        
+        rootString.append(dollarString)
+        rootString.append(centString)
+        
+        return rootString
+    }
+}
+
+
