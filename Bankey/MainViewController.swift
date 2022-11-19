@@ -60,3 +60,62 @@ class MoreViewController: UIViewController {
         view.backgroundColor = .systemPurple
     }
 }
+//
+//  ExampleVC.swift
+//  Bankey
+//
+//  Created by Bekzod Qahhorov on 17/11/22.
+//
+
+import UIKit
+import SnapKit
+
+class ExampleVC: UIViewController {
+    
+    var mainLabel = UILabel()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+//        setupSubView()
+        setupNSattrebutedString()
+    }
+    func setupNSattrebutedString() {
+        var attributes : [NSAttributedString.Key: Any] = [
+          .font: UIFont(name: "Baskerville", size: 15)
+        ]
+        addLabel(text: "Base attributes", attributes: attributes)
+
+        // change font and size
+        attributes[.font] = UIFont(name: "Chalkduster", size: 20)
+        addLabel(text: "Big Chalkduster", attributes: attributes)
+
+        // change color
+        attributes[.foregroundColor] = UIColor.orange
+        addLabel(text: "Orange text", attributes: attributes)
+
+        // add a blue background
+        attributes[.backgroundColor] = UIColor.blue
+        addLabel(text: "Blue Background", attributes: attributes)
+
+        // Helper function to create a new label and to add it to the view
+        func addLabel(text: String, attributes: [NSAttributedString.Key: Any]) {
+          let label = UILabel()
+          label.attributedText = NSAttributedString(string: text, attributes: attributes)
+          // set the label frame
+          // add to the superview
+        }
+    }
+    
+    private func setupSubView() {
+        view.addSubview(mainLabel)
+        
+        mainLabel.text = "welcome"
+        mainLabel.snp.makeConstraints { v in
+            v.left.right.equalToSuperview()
+            v.centerY.equalToSuperview()
+        }
+    }
+    
+    
+    
+}
