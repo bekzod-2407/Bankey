@@ -62,7 +62,7 @@ class AccountSummaryHeaderView: UIView {
         
         shakeyBellView.snp.makeConstraints { make in
             make.top.equalTo(sunImage.snp.bottom)
-            make.trailing.equalToSuperview().inset(25)
+            make.trailing.equalToSuperview()
         }
     }
 }

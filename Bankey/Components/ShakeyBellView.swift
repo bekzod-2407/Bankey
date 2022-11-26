@@ -9,6 +9,11 @@ import UIKit
 import SnapKit
 
 class ShakeyBellView: UIView {
+    let buttonView = UIButton()
+
+    let buttonHeight: CGFloat = 16
+
+   
     
     let imageView = UIImageView()
     override init(frame: CGRect) {
@@ -26,6 +31,7 @@ class ShakeyBellView: UIView {
     
     func setupSubViews() {
         addSubview(imageView)
+        addSubview(buttonView)
         
         let image = UIImage(systemName: "bell.fill")!.withTintColor(.white, renderingMode: .alwaysOriginal)
         
@@ -40,6 +46,18 @@ class ShakeyBellView: UIView {
             make.height.width.equalTo(28)
         }
         
+        buttonView.translatesAutoresizingMaskIntoConstraints = false
+        buttonView.backgroundColor = .systemRed
+        buttonView.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        buttonView.layer.cornerRadius = buttonHeight/2
+        buttonView.setTitle("9", for: .normal)
+        buttonView.setTitleColor(.white, for: .normal)
+        
+        buttonView.snp.makeConstraints { make in
+            make.top.equalTo(imageView.snp.top)
+            make.leading.equalTo(imageView.snp.trailing).inset(11)
+            make.height.width.equalTo(16)
+        }
     }
     
     
@@ -48,7 +66,7 @@ class ShakeyBellView: UIView {
         let numberOfFrames: Double = 6
         let frameDuration = Double(1/numberOfFrames)
         
-        imageView.setAnchorPoint(CGPoint(x: 0.5, y: yOffset))
+        //imageView.setAnchorPoint(CGPoint(x: 0.5, y: yOffset))
         
         UIView.animateKeyframes(withDuration: duration, delay: 0, options: [],
                                 animations: {
