@@ -64,7 +64,7 @@ class AccountSummaryViewController: UIViewController {
     private func setupTableViewHeaderView() {
         let headerView = AccountSummaryHeaderView(frame: .zero)
         headerView.backgroundColor = appColor
-        headerView.frame.size.height = 140
+        headerView.frame.size.height = 180
         tableView.tableHeaderView = headerView
     }
    

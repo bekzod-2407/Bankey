@@ -155,7 +155,7 @@ extension LoginViewController {
             signInButton.configuration?.imagePadding = 8
             return
         }
-        if username == "1" && password == "1" {
+        if username == "1" && password == "q" {
             signInButton.configuration?.showsActivityIndicator = true
             delegate?.didLogin()
         } else {
@@ -166,7 +166,18 @@ extension LoginViewController {
     private func configureView(with message: String) {
         errorMessageLabel.text = message
         errorMessageLabel.isHidden = false
+        shakeLogInButton()
     }
+    private func shakeLogInButton() {
+        let animation = CAKeyframeAnimation()
+        animation.keyPath = "position.x"
+        animation.values = [0, 10, -10, 10, 0]
+        animation.duration = 0.5
+        
+        animation.isAdditive = true
+        signInButton.layer.add(animation, forKey: "shake-Button")
+    }
+    
     private func animateLabels() {
         let duration = 0.8
         let animator  = UIViewPropertyAnimator(duration: duration, curve: .easeInOut) {
