@@ -16,6 +16,7 @@ class AccountSummaryHeaderView: UIView {
     var dateLabel = UILabel()
     
     lazy var labelStackView = UIStackView(arrangedSubviews: [appLabel,subtitle,nameLabel,dateLabel])
+    let shakeyBellView = ShakeyBellView()
     
     var sunImage = UIImageView()
     
@@ -31,6 +32,7 @@ class AccountSummaryHeaderView: UIView {
     func setupUI() {
         addSubview(labelStackView)
         addSubview(sunImage)
+        addSubview(shakeyBellView)
         
         appLabel.text = "Bankey"
         appLabel.font = .monospacedDigitSystemFont(ofSize: 22, weight: .bold)
@@ -42,21 +44,27 @@ class AccountSummaryHeaderView: UIView {
         nameLabel.font = .systemFont(ofSize: 18, weight: .regular)
         
         labelStackView.axis = .vertical
-        labelStackView.distribution = .fillEqually
+        labelStackView.distribution = .fill
         labelStackView.spacing = 10
+        
         labelStackView.snp.makeConstraints { v in
-            v.top.leading.bottom.equalToSuperview().inset(5)
-//            v.trailing.equalTo(sunImage.snp.leading)
+            v.top.leading.equalToSuperview().inset(15)
         }
+        
         sunImage.tintColor = .yellow
         sunImage.image = .init(systemName: "sun.max.fill")
         sunImage.contentMode = .scaleAspectFit
+        
         sunImage.snp.makeConstraints { v in
-            v.top.trailing.bottom.equalToSuperview().inset(16)
-            v.width.equalTo(140)
+            v.top.trailing.equalToSuperview().inset(15)
+            v.width.height.equalTo(120)
+        }
+        
+        shakeyBellView.snp.makeConstraints { make in
+            make.top.equalTo(sunImage.snp.bottom)
+            make.trailing.equalToSuperview()
         }
     }
-
 }
 
 
